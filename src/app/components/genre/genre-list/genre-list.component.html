@@ -1,0 +1,22 @@
+<div>
+  <h2>All genres</h2>
+
+  <table class="table">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Origin</th>
+      <th scope="col">Popularity</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let genre of genres">
+      <td scope="row">{{genre.name}}</td>
+      <td scope="row">{{genre.description}}</td>
+      <td scope="row">{{genre.origin}}</td>
+      <td scope="row">{{genre.popularity}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
