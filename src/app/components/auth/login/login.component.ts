@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {EmailValidator, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../auth.service';
 
 @Component({
@@ -8,6 +8,7 @@ import {AuthService} from '../auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  // EmailValidator(/^.+@.+\..+$/i)
   loginForm = new FormGroup({
     email: new FormControl('', [
       Validators.required
@@ -28,6 +29,6 @@ export class LoginComponent implements OnInit {
     const email = this.loginForm.get('email').value;
     const password = this.loginForm.get('password').value;
 
-    // this.authService.login(email, password);
+    this.authService.login(email, password);
   }
 }
