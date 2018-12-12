@@ -9,7 +9,10 @@ import {error} from 'selenium-webdriver';
 //import 'rxjs/add/operator/map';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({
+    'Authorization': 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJ0YWtzQGF2YW5zLm5sIiwicGFzc3dvcmQiOiIkMmEkMTAkVTFscUx2bFFWNFFqdzVycDVMdTdPT252YXhZQ0JmQmNpTjhQU0d4SGY5aGZSbFJaREZQSWkiLCJpYXQiOjE1NDQ2NDY5NTV9.8q9swDVpDfQvA-ZMMFxYeeLS34DC4YuxfqrnQWpXqNA',
+    'Content-Type': 'application/json'
+  })
 };
 
 
@@ -38,7 +41,7 @@ export class GenreService {
   // Read genres.
   // (result: any) => result.genre.map((genre: Genre) => new Genre(genre)
   getGenres(): Observable<Genre[]> {
-    return this.http.get<any[]>(this.genreUrl)
+    return this.http.get<any[]>(this.genreUrl, httpOptions)
       .pipe(
         map((result: any) => result.map((genre: Genre) => new Genre(genre))),
         catchError(this.handleError('getGenres', []))
@@ -47,7 +50,7 @@ export class GenreService {
 
   getGenre(_id: string): Observable<Genre> {
     const _url = `${this.genreUrl}/${_id}`;
-    return this.http.get<any>(_url)
+    return this.http.get<any>(_url, httpOptions)
       .pipe(
         map((result: any) => new Genre(result.response)),
         catchError(this.handleError<any>(`getGenre id=${_id}`))
