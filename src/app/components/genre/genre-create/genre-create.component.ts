@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {Genre} from '../../../models/genre';
-import {GenreService} from '../../../services/genre.service';
+import {GenreService} from '../genre.service';
 import {Location} from '@angular/common';
 
 @Component({
@@ -37,12 +37,7 @@ export class GenreCreateComponent implements OnInit {
     genrePopularity: ['FRESH']
   });
 
-  genre: Genre = new Genre(
-    this.genreForm.value.genreName,
-    this.genreForm.value.genreDescription,
-    this.genreForm.value.genreOrigin,
-    this.genreForm.value.genrePopularity
-  );
+  genre: Genre = new Genre();
 
   constructor(
     private fb: FormBuilder,

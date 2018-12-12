@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Genre } from '../../../models/genre';
-import { GenreService } from '../../../services/genre.service';
-import {HttpHeaders} from '@angular/common/http';
+import { GenreService } from '../genre.service';
 import {Location} from '@angular/common';
 
 @Component({

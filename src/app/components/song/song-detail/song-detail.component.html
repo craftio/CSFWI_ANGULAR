@@ -1,3 +1,63 @@
-<p>
-  song-detail works!
-</p>
+<div class="container">
+  <div class="row" *ngIf="song">
+    <div class="col-sm">
+      <h2>Update song</h2>
+      <form [formGroup]="songForm" (ngSubmit)="onSubmit()">
+        <label>
+          Name:
+          <input type="text" formControlName="songName">
+        </label>
+
+        <label>
+          Length in seconds:
+          <input type="number" formControlName="songLength_s">
+        </label>
+
+        <label>
+          Genre:
+          <select formControlName="songGenre">
+            <option *ngFor="let genre of genres" [selected]="genre == song.genre">
+              {{genre.name}}
+            </option>
+          </select>
+        </label>
+
+        <label>
+          Artist(s):
+        </label>
+        <button type="submit" class="btn btn-success" [disabled]="!songForm.valid" (click)="update()">SAVE</button>
+        &nbsp;
+        <button type="button" class="btn btn-info" (click)="goBack()">Go Back</button>
+      </form>
+    </div>
+    <div class="col-sm">
+      <h2>Database state of the song</h2>
+      <label>
+        Name:
+      </label>
+      <p>{{song.name}}</p>
+
+      <label>
+        Length:
+      </label>
+      <p>{{song.length_s / 60 | floor}}m{{song.length_s % 60}}s</p>
+
+      <label>
+        BPM:
+      </label>
+      <p>{{song.bpm}}</p>
+
+      <label>
+        Genre:
+      </label>
+      <p>{{song.genre.name}}</p>
+
+      <label>
+        Artist(s):
+      </label>
+      <p>{{song.artists[0].name}}</p>
+      <button type="button" class="btn btn-danger" id="delete" (click)="delete()">Delete song</button>
+      <h6><small>Deleting a song will send you back to the songs page.</small></h6>
+    </div>
+  </div>
+</div>

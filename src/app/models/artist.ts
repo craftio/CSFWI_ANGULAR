@@ -5,4 +5,8 @@ export class Artist {
   name: string;
   age: number;
   genres: Genre[];
+
+  constructor(values: Object = {}) {
+    Object.assign(this, values);
+  }
 }

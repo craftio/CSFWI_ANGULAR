@@ -1,4 +1,4 @@
-import { Genre } from '../models/genre';
+import { Genre } from '../../models/genre';
 
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { Observable, of } from 'rxjs';
@@ -36,18 +36,21 @@ export class GenreService {
   }
 
   // Read genres.
+  // (result: any) => result.genre.map((genre: Genre) => new Genre(genre)
   getGenres(): Observable<Genre[]> {
-    return this.http.get<Genre[]>(this.genreUrl)
+    return this.http.get<any[]>(this.genreUrl)
       .pipe(
+        map((result: any) => result.map((genre: Genre) => new Genre(genre))),
         catchError(this.handleError('getGenres', []))
       );
   }
 
   getGenre(_id: string): Observable<Genre> {
     const _url = `${this.genreUrl}/${_id}`;
-    return this.http.get<Genre>(_url)
+    return this.http.get<any>(_url)
       .pipe(
-      catchError(this.handleError<Genre>(`getGenre id=${_id}`))
+        map((result: any) => new Genre(result.response)),
+        catchError(this.handleError<any>(`getGenre id=${_id}`))
     );
   }
 

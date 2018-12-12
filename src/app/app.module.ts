@@ -20,10 +20,18 @@ import { SongListComponent } from './components/song/song-list/song-list.compone
 import { SongDetailComponent } from './components/song/song-detail/song-detail.component';
 
 // Services
-import { GenreService } from './services/genre.service';
+import { GenreService } from './components/genre/genre.service';
 import {FloorPipe} from './custom-pipes/floor.pipe';
 import { DashboardComponent } from './components/-extras/dashboard/dashboard.component';
 import { GenreCreateComponent } from './components/genre/genre-create/genre-create.component';
+import { ArtistCreateComponent } from './components/artist/artist-create/artist-create.component';
+import { SongCreateComponent } from './components/song/song-create/song-create.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
+import {AuthService} from './components/auth/auth.service';
+import {AuthGuardService} from './components/auth/auth-guard.service';
+import {ArtistService} from './components/artist/artist.service';
+import {SongService} from './components/song/song.service';
 
 // Decorator
 @NgModule({
@@ -38,7 +46,11 @@ import { GenreCreateComponent } from './components/genre/genre-create/genre-crea
     SongDetailComponent,
     FloorPipe,
     DashboardComponent,
-    GenreCreateComponent
+    GenreCreateComponent,
+    ArtistCreateComponent,
+    SongCreateComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +62,11 @@ import { GenreCreateComponent } from './components/genre/genre-create/genre-crea
     NgbModule
   ],
   providers: [
-    GenreService
+    GenreService,
+    ArtistService,
+    SongService,
+    AuthService,
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })

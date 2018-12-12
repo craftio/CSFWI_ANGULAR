@@ -1,19 +1,22 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <div>
-  <h2>All artists</h2>
+  <h2>
+    <span class="badge badge-secondary" id="nostyle">ALL ARTISTS</span> &nbsp;&nbsp; <a routerLink="/artists/add"><span class="badge badge-success">Add artist</span></a>
+  </h2>
 
-  <table class="table">
+  <table class="table table-hover">
     <thead class="thead-dark">
     <tr>
       <th scope="col">Name</th>
-      <th scope="col">Age</th>
-      <th scope="col">Genres</th>
+      <th scope="col">EDIT/DELETE</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let artist of artists">
       <td scope="row">{{artist.name}}</td>
-      <td scope="row">{{artist.age}}</td>
-      <td scope="row" *ngFor="let genre of artist.genres">{{genre.name}}, </td>
+      <td scope="row">
+        <a routerLink="/artists/{{artist._id}}"><h3><span class="badge badge-info"><i class="fas fa-ellipsis-h"></i></span></h3></a>
+      </td>
     </tr>
     </tbody>
   </table>

@@ -17,13 +17,3 @@ input {
   font-size: 1em;
   padding-left: .4em;
 }
-
-button:hover {
-  background-color: #cfd8dc;
-}
-
-button:disabled {
-  background-color: #eee;
-  color: #ccc;
-  cursor: auto;
-}

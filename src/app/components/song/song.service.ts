@@ -1,4 +1,4 @@
-import { Song } from '../models/song';
+import { Song } from '../../models/song';
 
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
@@ -25,6 +25,15 @@ export class SongService {
     return this.http.get<Song[]>(this.songUrl)
       .pipe(
         catchError(this.handleError('getSongs', []))
+      );
+  }
+
+  getSong(_id: string): Observable<Song> {
+    const _url = `${this.songUrl}/${_id}`;
+    return this.http.get<any>(_url)
+      .pipe(
+        map((result: any) => new Song(result.response)),
+        catchError(this.handleError<any>(`getSong id=${_id}`))
       );
   }
 

@@ -1,25 +1,22 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <div>
-  <h2>All genres</h2>
+  <h2>
+    <span class="badge badge-secondary" id="nostyle">ALL SONGS</span> &nbsp;&nbsp; <a routerLink="/genres/add"><span class="badge badge-success">Add song</span></a>
+  </h2>
 
-  <table class="table">
+  <table class="table table-hover">
     <thead class="thead-dark">
     <tr>
       <th scope="col">Name</th>
-      <th scope="col">Length</th>
-      <th scope="col">BPM</th>
-      <th scope="col">Genre</th>
-      <th scope="col">Artist(s)</th>
-      <th scope="col">Release Date</th>
+      <th scope="col">EDIT/DELETE</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let song of songs">
+    <tr *ngFor="let song of songs" (click)="goToDetails(genre)">
       <td scope="row">{{song.name}}</td>
-      <td scope="row">{{song.length_s / 60 | floor}}m{{song.length_s % 60}}s</td>
-      <td scope="row">{{song.bpm}}</td>
-      <td scope="row">{{song.genre.name}}</td>
-      <td scope="row" *ngFor="let artist of song.artists">{{artist.name}}</td>
-      <td scope="row">{{song.releasedate | date}}</td>
+      <td scope="row">
+        <a routerLink="/songs/{{song._id}}"><h3><span class="badge badge-info"><i class="fas fa-ellipsis-h"></i></span></h3></a>
+      </td>
     </tr>
     </tbody>
   </table>

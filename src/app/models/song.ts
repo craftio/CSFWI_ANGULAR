@@ -9,4 +9,8 @@ export class Song {
   genre: Genre;
   artists: Artist[];
   releasedate: Date;
+
+  constructor(values: Object = {}) {
+    Object.assign(this, values);
+  }
 }

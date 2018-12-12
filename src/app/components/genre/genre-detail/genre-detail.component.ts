@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Genre} from '../../../models/genre';
 import {ActivatedRoute} from '@angular/router';
-import {GenreService} from '../../../services/genre.service';
+import {GenreService} from '../genre.service';
 import {Location} from '@angular/common';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
@@ -81,7 +81,7 @@ export class GenreDetailComponent implements OnInit {
 
     // const _id = this.route.snapshot.paramMap.get('_id');
     this.genreService.updateGenre(this.genre)
-      .subscribe(() => this.goBack());
+      .subscribe();
   }
 
   delete(): void {

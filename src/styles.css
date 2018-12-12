@@ -9,3 +9,38 @@ div {
   margin: 25px;
 }
 
+a, a:hover {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+a {
+  color: crimson;
+}
+
+a:hover {
+  color: snow;
+}
+
+.nav-link {
+  min-height: 80px;
+  background-color: lightblue;
+  align-items: center;
+  padding-top: 30px;
+}
+
+.nav-link:hover {
+  background-color: #607D8B;
+}
+
+span:hover {
+  box-shadow: 5px 5px grey;
+}
+
+#nostyle {
+  box-shadow: 0px 0px;
+}
+
+table {
+  text-align: center;
+}

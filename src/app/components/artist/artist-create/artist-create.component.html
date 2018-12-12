@@ -1,0 +1,18 @@
+<div>
+  <h2>Update artist</h2>
+  <form [formGroup]="artistForm" (ngSubmit)="onSubmit()">
+    <label>
+      Name:
+      <input type="text" formControlName="artistName">
+    </label>
+
+    <label>
+      Age:
+      <input type="number" formControlName="artistAge">
+    </label>
+
+    <button type="submit" class="btn btn-success" [disabled]="!artistForm.valid" (click)="create()">SAVE</button>
+        &nbsp;
+    <button type="button" class="btn btn-info" (click)="goBack()">Go Back</button>
+  </form>
+</div>
