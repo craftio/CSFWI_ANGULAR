@@ -1,7 +1,6 @@
 import { Genre } from '../models/genre';
 
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import {error} from 'selenium-webdriver';
@@ -9,6 +8,13 @@ import {error} from 'selenium-webdriver';
 // RxJS operator for mapping the observable.
 //import 'rxjs/add/operator/map';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
+
+// Injectable decorator.
+import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
@@ -21,9 +27,12 @@ export class GenreService {
   ) { }
 
   // Create genre.
-  createGenre(genre: Genre): Observable<any> {
+  createGenre(genre: Genre): Observable<Genre> {
     // Returns the observable of the http post request.
-    return this.http.post(`${this.genreUrl}`, genre);
+    return this.http.post<Genre>(`${this.genreUrl}`, genre, httpOptions)
+      .pipe(
+        catchError(this.handleError<Genre>('createGenre'))
+      );
   }
 
   // Read genres.
@@ -32,6 +41,35 @@ export class GenreService {
       .pipe(
         catchError(this.handleError('getGenres', []))
       );
+  }
+
+  getGenre(_id: string): Observable<Genre> {
+    const _url = `${this.genreUrl}/${_id}`;
+    return this.http.get<Genre>(_url)
+      .pipe(
+      catchError(this.handleError<Genre>(`getGenre id=${_id}`))
+    );
+  }
+
+  // Update genre.
+  updateGenre(genre: Genre | string): Observable<Genre> {
+    const _id = typeof genre === 'string' ? genre : genre._id;
+    const url = `${this.genreUrl}/${_id}`;
+    return this.http.put(url, genre, httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('updateGenre'))
+      );
+  }
+
+  // Delete genre.
+  deleteGenre(genre: Genre | string): Observable<Genre> {
+    const _id = typeof genre === 'string' ? genre : genre._id;
+    const url = `${this.genreUrl}/${_id}`;
+
+    return this.http.delete<Genre>(url, httpOptions)
+      .pipe(
+      catchError(this.handleError<Genre>('deleteGenre'))
+    );
   }
 
   private handleError<T> (operation = 'operation', result?: T) {

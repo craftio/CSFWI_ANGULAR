@@ -6,14 +6,20 @@ import { GenreListComponent } from './components/genre/genre-list/genre-list.com
 import { PageNotFoundComponent } from './components/-extras/page-not-found/page-not-found.component';
 import {ArtistListComponent} from './components/artist/artist-list/artist-list.component';
 import {SongListComponent} from './components/song/song-list/song-list.component';
+import {DashboardComponent} from './components/-extras/dashboard/dashboard.component';
+import {GenreDetailComponent} from './components/genre/genre-detail/genre-detail.component';
+import {GenreCreateComponent} from './components/genre/genre-create/genre-create.component';
 
 // Routes
 const routes: Routes = [
   // Redirect to base url
-  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 
   // Used paths.
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'genres', component: GenreListComponent },
+  { path: 'genres/add', component: GenreCreateComponent },
+  { path: 'genres/:_id', component: GenreDetailComponent },
   { path: 'artists', component: ArtistListComponent },
   { path: 'songs', component: SongListComponent },
 

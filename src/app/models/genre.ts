@@ -22,8 +22,16 @@ module GenreEnums {
 }
 
 export class Genre {
+  _id: string;
   name: string;
   description: string;
   origin: GenreEnums._origin;
   popularity: GenreEnums._popularity;
+
+  constructor(name: string, description: string, origin: string, popularity: string) {
+    this.name = name;
+    this.description = description;
+    this.origin = GenreEnums._origin[origin];
+    this.popularity = GenreEnums._popularity[popularity];
+  }
 }

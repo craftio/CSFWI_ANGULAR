@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Genre } from '../../../models/genre';
 import { GenreService } from '../../../services/genre.service';
+import {HttpHeaders} from '@angular/common/http';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-genre-list',
@@ -11,7 +13,14 @@ import { GenreService } from '../../../services/genre.service';
 export class GenreListComponent implements OnInit {
   genres: Genre[];
 
-  constructor(private genreService: GenreService) { }
+  /**const httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  }; */
+
+  constructor(
+    private location: Location,
+    private genreService: GenreService
+  ) { }
 
   ngOnInit() {
     this.getGenres();
@@ -21,7 +30,11 @@ export class GenreListComponent implements OnInit {
     this.genreService.getGenres()
       .subscribe(genres => {
         this.genres = genres;
-        console.log(genres);
+        console.log(this.genres);
       });
+  }
+
+  goToDetails(genre): void {
+    this.location.go('/genres/' + genre._id);
   }
 }

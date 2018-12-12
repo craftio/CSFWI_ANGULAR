@@ -1,5 +1,20 @@
 <div>
-  <p>
-    artist-list works!
-  </p>
+  <h2>All artists</h2>
+
+  <table class="table">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Age</th>
+      <th scope="col">Genres</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let artist of artists">
+      <td scope="row">{{artist.name}}</td>
+      <td scope="row">{{artist.age}}</td>
+      <td scope="row" *ngFor="let genre of artist.genres">{{genre.name}}, </td>
+    </tr>
+    </tbody>
+  </table>
 </div>

@@ -1,0 +1,33 @@
+<div>
+  <h2>Add a genre</h2>
+  <form [formGroup]="genreForm" (ngSubmit)="onSubmit()">
+    <label>
+      Name:
+      <input type="text" formControlName="genreName" required>
+    </label>
+
+    <label>
+      Description:
+      <textarea rows="4" cols="40" type="text" formControlName="genreDescription" required></textarea>
+    </label>
+
+    <label>
+      Origin:
+      <select formControlName="genreOrigin">
+        <option *ngFor="let origin of origins" [selected]="genreForm.value.genreOrigin">
+          {{origin}}
+        </option>
+      </select>
+    </label>
+
+    <label>
+      Popularity:
+      <select formControlName="genrePopularity">
+        <option *ngFor="let popularity of popularities" [selected]="genreForm.value.genrePopularity">
+          {{popularity}}
+        </option>
+      </select>
+    </label>
+    <button type="submit" [disabled]="!genreForm.valid" (click)="create()">SAVE</button>
+  </form>
+</div>

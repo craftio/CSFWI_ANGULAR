@@ -1,3 +1,26 @@
 <div>
-  <p>song-list works!</p>
+  <h2>All genres</h2>
+
+  <table class="table">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Length</th>
+      <th scope="col">BPM</th>
+      <th scope="col">Genre</th>
+      <th scope="col">Artist(s)</th>
+      <th scope="col">Release Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let song of songs">
+      <td scope="row">{{song.name}}</td>
+      <td scope="row">{{song.length_s / 60 | floor}}m{{song.length_s % 60}}s</td>
+      <td scope="row">{{song.bpm}}</td>
+      <td scope="row">{{song.genre.name}}</td>
+      <td scope="row" *ngFor="let artist of song.artists">{{artist.name}}</td>
+      <td scope="row">{{song.releasedate | date}}</td>
+    </tr>
+    </tbody>
+  </table>
 </div>

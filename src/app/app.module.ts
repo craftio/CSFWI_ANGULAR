@@ -3,7 +3,7 @@
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule } from '@angular/core';
@@ -21,6 +21,9 @@ import { SongDetailComponent } from './components/song/song-detail/song-detail.c
 
 // Services
 import { GenreService } from './services/genre.service';
+import {FloorPipe} from './custom-pipes/floor.pipe';
+import { DashboardComponent } from './components/-extras/dashboard/dashboard.component';
+import { GenreCreateComponent } from './components/genre/genre-create/genre-create.component';
 
 // Decorator
 @NgModule({
@@ -32,13 +35,17 @@ import { GenreService } from './services/genre.service';
     GenreListComponent,
     GenreDetailComponent,
     SongListComponent,
-    SongDetailComponent
+    SongDetailComponent,
+    FloorPipe,
+    DashboardComponent,
+    GenreCreateComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     NgbModule
   ],

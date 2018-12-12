@@ -1,21 +1,28 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <div>
-  <h2>All genres</h2>
+  <h2>
+    All genres - <a routerLink="/genres/add"><span class="badge badge-success">Add genre</span></a>
+  </h2>
 
-  <table class="table">
+  <table class="table table-hover">
     <thead class="thead-dark">
     <tr>
       <th scope="col">Name</th>
       <th scope="col">Description</th>
       <th scope="col">Origin</th>
       <th scope="col">Popularity</th>
+      <th scope="col">OPTIONS</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let genre of genres">
+    <tr *ngFor="let genre of genres" (click)="goToDetails(genre)">
       <td scope="row">{{genre.name}}</td>
       <td scope="row">{{genre.description}}</td>
       <td scope="row">{{genre.origin}}</td>
       <td scope="row">{{genre.popularity}}</td>
+      <td scope="row">
+        <a routerLink="/genres/{{genre._id}}"><h3><span class="badge badge-info"><i class="fas fa-ellipsis-h"></i></span></h3></a>
+      </td>
     </tr>
     </tbody>
   </table>
